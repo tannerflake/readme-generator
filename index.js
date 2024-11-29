@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+import fs from "fs";
 
 inquirer.prompt([
     {
@@ -59,57 +60,68 @@ inquirer.prompt([
     {
         type: "input",
         message: "What lisence will you be using for your project?",
-        name: "lisence"
+        name: "license"
     }
 ])
 
 
 
-// .then((data) => {
-//     //const writeString = gene
-// })
+.then((data) => {
+    const writeString = generateReadme(data)
+    fs.writeFile("README.md", writeString, (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log("ReadMe file generated sucessfully!")
+        }
+    })
+    
+})
 
-// function generateReadme(data) {
-//     const readMeOutput = 
-//     `
-//     # <Project Title>
+function generateReadme(data) {
+    const readMeOutput = 
+`
+# ${data.title}
 
-//     ## Description
-//     <Project Description>
+## Description
+Project ${data.description}
 
-//     ## Motivation
-//     <What was your motivation?>
+## Motivation
+${data.motivation}
 
-//     ## Why Build This Project?
-//     <Why did you build this project?>
+## Why Build This Project?
+${data.whyBuild}
 
-//     ## Problem It Solves
-//     <What problem does it solve?>
+## Problem It Solves
+${data.problem}
 
-//     ## What I Learned
-//     <What did you learn?>
+## What I Learned
+${data.whatLearned}
 
-//     ## Installation
-//     ### Steps to Install
-//     <What are the steps required to install your project?>
+## Installation
+### Steps to Install
+${data.installation}
 
-//     ## Usage
-//     ### Instructions and Examples
-//     <Provide instructions and examples for use.>
+## Usage
+### Instructions and Examples
+${data.instructionsAndExamples}
 
-//     ## Collaborators
-//     <List your collaborators, if any, with links to their GitHub profiles.>
+## Collaborators
+${data.collaborators}
 
-//     ## Third-Party Assets
-//     <If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.>
+## Third-Party Assets
+${data.thirdPartyAssets}
 
-//     ## Tutorials
-//     <If you followed tutorials, include links to those here as well.>
+## Tutorials
+${data.tutorials}
 
-//     ## License
-//     <What license will you be using for your project?>
-//     `
-// }
+## License
+${data.license}
+`
+
+    return readMeOutput;
+}
+
 
 
 // .then((data) => {
