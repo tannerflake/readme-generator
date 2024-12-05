@@ -22,3 +22,6 @@ To install and run this application, follow these steps:
 1. Run the application using the following command:
    ```bash
    node index.js
+
+## Video Demo
+https://youtu.be/1qGKhfITNOI
